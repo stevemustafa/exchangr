@@ -4,6 +4,7 @@ exports.__esModule = true;
 var chai_1 = require("chai");
 require("mocha");
 var fetch = require("node-fetch");
+var port = process.env.PORT || 3000;
 describe('Array', function () {
     describe('#indexOf()', function () {
         it('should return -1 when the value is not present', function () {
@@ -11,9 +12,25 @@ describe('Array', function () {
         });
     });
 });
-describe('Sanity check', function () {
+describe('Second suite of tests', function () {
+    describe('Sanity check', function () {
+        it('should return 200/http OK', function () {
+            var sanity_url = "http://127.0.0.1:${port}";
+            console.log(sanity_url);
+            // fetch(sanity_url)
+            //     .then(data => {
+            //         return data.json()
+            //     })
+            //     .then(res => {
+            //         console.log(res)
+            //         assert.equal(res.toString(), '200');
+            //     });
+        });
+    });
 });
-var sanity_url = "https://api.exchangeratesapi.io/latest?symbols=USD,GBP&base=USD";
-fetch(sanity_url)
-    .then(function (data) { return data.json(); })
-    .then(function (res) { console.log(res); });
+/*
+const exchnge_url = "https://api.exchangeratesapi.io/latest?symbols=USD,GBP&base=USD";
+fetch(exchnge_url)
+    .then(data => {return data.json()})
+    .then(res => {console.log(res)});
+*/
