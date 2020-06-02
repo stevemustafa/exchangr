@@ -1,9 +1,10 @@
 version: 0.2
 
+env:
+  variables:
+    PORT:3000
+
 phases:
-  env:
-    variables:
-      PORT:3000
   install:
     commands:
       - yum update -y
