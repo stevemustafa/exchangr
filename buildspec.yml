@@ -6,7 +6,10 @@ env:
 phases:
   install:
     commands:
-      - yum update -y
+      - echo $AWS_ACCOUNT_ID AWS_ACCOUNT_ID
+      - echo $AWS_ACCOUNT_REGION AWS_ACCOUNT_REGION
+      - echo $IMAGE_REPO_NAME IMAGE_REPO_NAME
+      - echo $IMAGE_TAG IMAGE_TAG
     runtime-versions:
       nodejs: 12.x
   pre_build:
@@ -16,7 +19,7 @@ phases:
   pre_build:
     commands:
       - echo Logging in to Amazon ECR...
-      - $(aws ecr get-login --no-include-email --region $AWS_DEFAULT_REGION)
+      - $(aws ecr get-login --no-include-email --region eu-west-1)
   build:
     commands:
       - echo Build started on `date`
@@ -27,4 +30,4 @@ phases:
     commands:
       - echo Build completed on `date`
       - echo Pushing the Docker image...
-      - docker push $AWS_ACCOUNT_ID.dkr.ecr.$AWS_DEFAULT_REGION.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
+      - docker push $AWS_ACCOUNT_ID.dkr.ecr.eu-west-1.amazonaws.com/$IMAGE_REPO_NAME:$IMAGE_TAG
