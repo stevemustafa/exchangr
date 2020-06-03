@@ -3,6 +3,10 @@ version: 0.2
 env:
   variables:
     PORT: "3000"
+    AWS_ACCOUNT_ID : "334033517520"
+    AWS_ACCOUNT_REGION : "eu-west-1"
+    IMAGE_REPO_NAME : "exchangr"
+    IMAGE_TAG : "latest"
 phases:
   install:
     runtime-versions:
@@ -22,6 +26,7 @@ phases:
       - REPOSITORY_URI=334033517520.dkr.ecr.eu-west-1.amazonaws.com/exchangr
       - COMMIT_HASH=$(echo $CODEBUILD_RESOLVED_SOURCE_VERSION | cut -c 1-7)
       - IMAGE_TAG=${COMMI_HASH:=latest}
+      - echo $IMAGE_TAG
       - IMAGE_REPO_NAME='exchangr'
   build:
     commands:
